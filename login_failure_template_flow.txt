@@ -1,0 +1,40 @@
+*** Setting ***
+Library   Selenium2Library
+Test Template    Invalid login
+Suite Setup    Open Login Page
+Test Setup    Go to Login Page
+Suite Teardown    Close Browser
+Resource    resource/login.txt
+
+
+*** Testcases ***
+Invalid login
+	[Template]    Invalid login flow
+	#-- Username --|-- Password --|
+	${EMPTY}    	${EMPTY}
+	${username}    	${EMPTY}
+	${EMPTY}    	${password}
+	${incorrect}    ${password}
+	${EMPTY}    	${incorrect}
+	${incorrect}    ${password}
+	${incorrect}    ${EMPTY}
+	${incorrect}    ${incorrect}
+
+*** Keywords ***
+
+Invalid page show
+	Wait Until Page Contains   Login failed. Invalid user name and/or password.
+	Title Should Be    Error Page	
+	Location Should Be    ${login_url}error.html
+
+Invalid login flow
+	[Arguments]    ${user_name}    ${pass_word}
+	Input Text    name=username_field     ${user_name}
+	Input Text    name=password_field     ${pass_word}
+	Click Login
+	Invalid page show
+	Go toLogin Page
+
+
+
+	

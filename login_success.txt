@@ -1,0 +1,30 @@
+*** Setting ***
+Library    Selenium2Library
+Test Setup    Open Login Page 
+Test Teardown    Close Browser
+resource    resource/login.txt
+
+*** Testcases ***
+Login Success
+	[Documentation]    Fill U&P
+	...						TTTT
+	# Go to Login Page
+	Fill Username Password
+	Click Login
+	Welcome page is show
+	#Logout
+
+*** Keywords ***
+
+Fill Username Password
+	Input Text    name=username_field    ${username} 
+	Input Text    name=password_field    ${password} 
+
+Welcome page is show
+	[Documentation]    Success!!!
+	Wait Until Page Contains   Welcome Page
+	Wait Until Page Contains   logout
+	Title Should Be    Welcome Page
+# Logout
+# 	Click Element    xpath=//*[@id="container"]/p/a
+

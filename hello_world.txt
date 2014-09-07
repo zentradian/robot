@@ -1,0 +1,21 @@
+*** Setting ***
+Library    Selenium2Library
+
+*** Variables ***
+
+*** Testcases ***
+Testcase security password
+	open browser and go to register page
+	fill password
+	display correct symbol
+	#[Teardown]    Close Browser
+
+*** Keywords ***
+open browser and go to register page
+	Open Browser    http://www.facebook.com
+fill password
+	Input Text    u_0_a    0987
+	Click Button    ลงทะเบียน
+display correct symbol
+	Wait Until Page Contains   คุณชื่ออะไร
+

@@ -1,0 +1,24 @@
+*** Setting ***
+Library    Selenium2Library
+
+*** Variables ***
+
+*** Testcases ***
+Testcase iphone6 Search
+	open google
+	fill search iphone6
+	wait result and click result
+	#Close Page
+
+*** Keywords ***
+open google
+	Open Browser    http://www.google.co.th
+fill search iphone6
+	Input Text    gbqfq    iphone6
+wait result and click result
+	Wait Until Page Contains    iPhone 6
+	Click Element    xpath=//*[@id="rso"]/div[2]/li[2]/div/h3/a
+Close Page
+	Close Browser
+
+

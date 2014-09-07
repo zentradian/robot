@@ -1,0 +1,17 @@
+*** Variables ***
+${login_url}    http://localhost:7272/html/
+${username}    demo
+${password}    mode
+${incorrect}    abc
+
+*** Keywords ***
+Open Login Page 
+	Open Browser    ${login_url}
+	Maximize Browser Window
+
+Go toLogin Page
+	Go to    ${login_url}
+
+Click Login
+	[Documentation]    Login!!!
+	Click Button    name=login_button

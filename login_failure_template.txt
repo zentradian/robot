@@ -1,0 +1,57 @@
+*** Setting ***
+Library   Selenium2Library
+Test Template    Invalid login
+Suite Setup    Open Login Page
+Test Setup    Go to Login Page
+Suite Teardown    Close Browser
+
+*** Variables ***
+${login_url}    http://localhost:7272/html/
+${username}    demo
+${password}    mode
+${incorrect}    abc
+
+*** Testcases ***						USERNAME    	PASSWORD
+
+TC1 : user_empty,pass_empty    			${EMPTY}    	${EMPTY}
+
+TC2 : user_correct,pass_empty    		${username}    	${EMPTY}
+
+TC3 : user_empty,pass_corrent    		${EMPTY}    	${password}
+
+TC4 : user_incorrect,pass_corrent    	${incorrect}    ${password}
+
+TC5 : user_empty,pass_incorrent   	 	${EMPTY}    	${incorrect}
+
+TC6 : user_incorrect,pass_correct   	${incorrect}    ${password}
+
+TC7 : user_incorrect,pass_empty    		${incorrect}    ${EMPTY}
+
+TC8 : user_incorrect,pass_incorrent    	${incorrect}    ${incorrect}
+
+** Keywords ***
+Open Login Page 
+	Open Browser    ${login_url}
+	Maximize Browser Window
+
+Go toLogin Page
+	Go to    ${login_url}
+
+Click Login
+	Click Button    name=login_button
+
+Invalid page show
+	Wait Until Page Contains   Login failed. Invalid user name and/or password.
+	Title Should Be    Error Page	
+	Location Should Be    ${login_url}error.html
+
+Invalid login
+	[Arguments]    ${user_name}    ${pass_word}
+	Input Text    name=username_field     ${user_name}
+	Input Text    name=password_field     ${pass_word}
+	Click Login
+	Invalid page show
+
+
+
+	
