@@ -10,7 +10,7 @@ Resource    resource/login.txt
 *** Testcases ***
 Invalid login
 	[Template]    Invalid login flow
-	#-- Username --|-- Password --|
+	#-- Username --|-- Password --|#
 	${EMPTY}    	${EMPTY}
 	${username}    	${EMPTY}
 	${EMPTY}    	${password}
